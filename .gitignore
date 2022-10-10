@@ -7,6 +7,7 @@
 
 # testing
 /coverage
+req.rest
 
 # next.js
 /.next/
