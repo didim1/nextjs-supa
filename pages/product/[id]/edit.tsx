@@ -13,11 +13,11 @@ const EditProduct = ({ product }: DataSingle) => {
 
     const updateProduct = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        await axios.patch(`${process.env.NEXT_PUBLIC_DOMAIN_APP}/api/product/${id}`, {
+        await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/product/${id}`, {
             name,
             price: parseInt(price)
         })
-        router.push(`${process.env.NEXT_PUBLIC_DOMAIN_APP}/products`)
+        router.push(`${process.env.NEXT_PUBLIC_URL}/products`)
     }
 
     return (
@@ -27,7 +27,7 @@ const EditProduct = ({ product }: DataSingle) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN_APP}/api/product/${context.params?.id}`)
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/product/${context.params?.id}`)
 
     const product: DataSingle = await response.data
 

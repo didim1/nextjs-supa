@@ -5,11 +5,12 @@ import styles from '../../../styles/Home.module.css'
 import Image from 'next/future/image'
 import { Data } from '../../../interface';
 import Link from 'next/link';
+import axios from 'axios';
 
-const fetcher = (url: string) => fetch(url).then(res => res.json())
+const fetcher = (url: string) => axios.get(url).then(res => res.data)
 const ProductDetail = () => {
     const router = useRouter()
-    const { data, error } = useSwr<Data>(router.query.id ? `/api/product/${router.query.id}` : null, fetcher)
+    const { data, error } = useSwr<Data>(router.query.id ? `${process.env.NEXT_PUBLIC_URL}/api/product/${router.query.id}` : null, fetcher)
 
 
     return (

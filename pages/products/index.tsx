@@ -8,11 +8,11 @@ const fetcher: Fetcher<Data[]> = (url: string) => axios.get(url).then(res => res
 
 const Products = () => {
     const { mutate } = useSWRConfig()
-    const { data } = useSWR(`${process.env.NEXT_PUBLIC_DOMAIN_APP}/api/products`, fetcher)
+    const { data } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/products`, fetcher)
     if (!data) return <h1>Loading</h1>;
 
     const deleteProduct = async (id: number) => {
-        await axios.delete(`${process.env.NEXT_PUBLIC_DOMAIN_APP}/api/product/${id}`)
+        await axios.delete(`${process.env.NEXT_PUBLIC_URL}/api/product/${id}`)
     }
 
     return (
