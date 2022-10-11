@@ -10,11 +10,11 @@ const AddProduct = () => {
 
     const saveProduct = async (e: { preventDefault: () => void }) => {
         e.preventDefault()
-        await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/products`, {
+        await axios.post(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products`, {
             name,
             price: parseInt(price),
         })
-        router.push(`${process.env.NEXT_PUBLIC_URL}/products`)
+        router.push(`${process.env.NEXT_PUBLIC_VERCEL_URL}/products`)
 
     }
 

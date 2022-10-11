@@ -12,6 +12,7 @@ const FormProduct = (props: {
                             Product Name
                         </label>
                         <input
+                            required
                             type="text"
                             name="productName"
                             id="name"
@@ -26,6 +27,7 @@ const FormProduct = (props: {
                             Product Price
                         </label>
                         <input
+                            required
                             type="number"
                             name="productPrice"
                             id="price"
