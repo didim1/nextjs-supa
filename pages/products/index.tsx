@@ -54,7 +54,7 @@ const Products = () => {
                                             <button
                                                 onClick={() => {
                                                     deleteProduct(product.id);
-                                                    mutate(`${process.env.NEXT_PUBLIC_DOMAIN_APP}/products`)
+                                                    mutate(`${process.env.NEXT_PUBLIC_DOMAIN_APP}/api/products`)
 
                                                 }}
                                                 className="font-medium bg-red-700 hover:bg-red-800 px-3 py-1 rounded text-white mr-1"
