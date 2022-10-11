@@ -10,7 +10,7 @@ import axios from 'axios';
 const fetcher = (url: string) => axios.get(url).then(res => res.data)
 const ProductDetail = () => {
     const router = useRouter()
-    const { data, error } = useSwr<Data>(router.query.id ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/product/${router.query.id}` : null, fetcher)
+    const { data, error } = useSwr<Data>(router.query.id ? `${process.env.NEXT_PUBLIC_HTTP}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/product/${router.query.id}` : null, fetcher)
 
 
     return (
