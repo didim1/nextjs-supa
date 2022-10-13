@@ -1,6 +1,5 @@
-import type { Data, Database, Error } from '../../interface';
+import { Data } from '../../interface';
 import useSWR, { Fetcher, useSWRConfig } from 'swr'
-import InternalServerError from '../500';
 import Link from 'next/link';
 import axios from 'axios';
 
@@ -8,11 +7,11 @@ const fetcher: Fetcher<Data[]> = (url: string) => axios.get(url).then(res => res
 
 const Products = () => {
     const { mutate } = useSWRConfig()
-    const { data } = useSWR(`${process.env.NEXT_PUBLIC_HTTP}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products`, fetcher)
+    const { data } = useSWR(`/api/products`, fetcher)
     if (!data) return <h1>Loading</h1>;
 
     const deleteProduct = async (id: number) => {
-        await axios.delete(`${process.env.NEXT_PUBLIC_HTTP}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/product/${id}`)
+        await axios.delete(`/api/product/${id}`)
     }
 
     return (
@@ -52,9 +51,9 @@ const Products = () => {
                                                 <a className="font-medium bg-blue-400 hover:bg-blue-600 px-3 py-1 rounded text-white mr-1">Edit</a>
                                             </Link>
                                             <button
-                                                onClick={() => {
-                                                    deleteProduct(product.id);
-                                                    mutate(`${process.env.NEXT_PUBLIC_DOMAIN_APP}/api/products`)
+                                                onClick={async () => {
+                                                    await deleteProduct(product.id);
+                                                    await mutate(`/api/products`)
 
                                                 }}
                                                 className="font-medium bg-red-700 hover:bg-red-800 px-3 py-1 rounded text-white mr-1"
